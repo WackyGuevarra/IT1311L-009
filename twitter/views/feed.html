@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <title>Twitter Feed View</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+
+<body>
+
+    <script src="../controllers/fetchUser.js"></script>
+    <script src="../controllers/fetchTweet.js"></script>
+    <script src="../controllers/mediaLoader.js"></script>
+    <script src="../models/GetTweetsQueryParams.js"></script>
+
+    <div class="tweet-container" id="tweet-container">
+        <!-- Tweets will be populated here -->
+        <script>
+            async function loadTweets() {
+                const tweetContainer = document.getElementById('tweet-container');
+                const user = await getUserDetails("ProgrammersMeme");
+                const tweetData = await getUserTweet(new GetTweetsQueryParams(user.username, user.user_id, false, 40));
+                tweetData.results.forEach(data => {
+                    const tweetElement = document.createElement('div');
+                    tweetElement.classList.add('tweet');
+                    tweetElement.innerHTML = 
+                    `<div class="user-info"> <img class="user-avatar" src="${user.profile_pic_url}" alt="User Avatar">
+                        <div>
+                            <div class="user-name">${user.name}</div>
+                            <div class="user-handle">@${user.username}</div>
+                        </div>
+                    </div>
+                    <div class="tweet-content">${data.text}</div>
+                    ${loadMedia(data.media_url)}
+                    <div class="tweet-actions">
+                        <i class="fa fa-heart" style="font-size:18px">
+                            <label id="action-value">${data.favorite_count}</label>
+                        </i>
+                        <i class="fa fa-share" style="font-size:18px">
+                            <label id="action-value">${data.quote_count}</label>
+                        </i>
+                    </div>`;
+                    tweetContainer.appendChild(tweetElement);
+                });
+            }
+            loadTweets();
+        </script>
+        <!-- HARD CODED VALUES - for testing, proof that tweets will automatically be stylized regardless of API all or not
+        <div class="tweet">
+            <div class="user-info">
+                <img class="user-avatar"
+                    src="https://pbs.twimg.com/profile_images/971150568210292736/x1cCrJpq_normal.jpg" alt="User Avatar">
+                <div>
+                    <div class="user-name">Programmers Meme</div>
+                    <div class="user-handle">ProgrammersMeme</div>
+                </div>
+            </div>
+            <div class="tweet-content">Mindset</div>
+            <img class="tweet-image" src="https://pbs.twimg.com/media/F54wKVQXUAAm1M0?format=webp&name=small" alt="Tweet Image">
+            <div class="tweet-actions">
+                <i class="fa fa-heart" style="font-size:18px">
+                    <label id="action-value">2</label>
+                </i>
+                <i class="fa fa-share" style="font-size:18px">
+                    <label id="action-value">3</label>
+                </i>
+            </div>
+        </div>
+        -->
+    </div>
+</body>
+
+</html>

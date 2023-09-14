@@ -1,0 +1,83 @@
+body {
+    background-color: #141d26;
+    color: #fff;
+}
+
+.tweet-container {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.tweet {
+    background-color: #192734;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+}
+
+div .user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+div img:hover {
+    background-color: pink;
+    opacity: 0.5;
+}
+
+/* User information */
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* Username and handle */
+.user-name {
+    font-weight: bold;
+}
+
+.user-name+div {
+    color: #657786;
+}
+
+/* Tweet content */
+.tweet-content {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+/* Tweet image */
+.tweet-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* Tweet actions (like, retweet, etc.) */
+.tweet-actions {
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    color: #657786;
+    font-family: Arial, sans-serif;
+}
+
+.tweet-actions {
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    color: #657786;
+    font-family: Arial, sans-serif;
+}
+
+#action-value {
+    font-family: Arial, sans-serif;
+}
+
+.tweet:nth-child(even) {
+    background-color: #243443c2;
+}
